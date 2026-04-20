@@ -653,3 +653,12 @@ jobs:
           path: |
             *-junit.xml
             *-gotest.json
+
+  node-e2e:
+    name: E2E K8s ${{ matrix.k8s_version }}
+    strategy:
+      matrix:
+        k8s_version: [release-1.30, release-1.31, release-1.32, release-1.33]
+    uses: ./.github/workflows/node-e2e.yml
+    with:
+      k8s_version: ${{ matrix.k8s_version }}
